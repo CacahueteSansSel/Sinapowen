@@ -22,6 +22,7 @@ public class Mod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModBlocks.register(bus);
+        ModEffects.register(bus);
         ModItems.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
