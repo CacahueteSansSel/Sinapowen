@@ -27,8 +27,17 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+        distribution: 'adopt'
+    - name: Build the mod with Gradle
+      run: |
+         ./gradlew jar
+          git_hash=$(git rev-parse --short "$GITHUB_SHA")
+          echo "git_hash=$git_hash" >> $GITHUB_ENV
+          echo "snapshotVersion=5.5-SNAPSHOT" >> $GITHUB_ENV
+          echo "artifactPath=$(pwd)/build/libs/sina-1.0.0.jar" >> $GITHUB_ENV
+    - name: Upload the jar as an artifact
+      uses: actions/upload-artifact@v3
       with:
-        arguments: build
+        name: Sinapowen-${{ env.git_hash }}.jar
+        path: ${{ env.artifactPath }}
+        
