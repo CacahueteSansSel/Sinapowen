@@ -32,6 +32,16 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
             , ModTabs.MOD_MAIN_TAB);
 
+    public static final RegistryObject<Block> SHEET_METAL_CHECKERBOARD_BLOCK = registerBlock("sheet_metal_checkerboard_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
+            , ModTabs.MOD_MAIN_TAB);
+
+    public static final RegistryObject<Block> SHEET_METAL_CHECKERWALL_BLOCK = registerBlock("sheet_metal_checkerwall_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
+            , ModTabs.MOD_MAIN_TAB);
+
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
     }

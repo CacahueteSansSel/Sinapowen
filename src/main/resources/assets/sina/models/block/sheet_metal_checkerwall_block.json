@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "sina:block/sheet_metal_checkerwall_block"
+  }
+}
