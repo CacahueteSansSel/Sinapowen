@@ -42,6 +42,9 @@ public class ModItems {
             () -> new RecordItem(4, ModSounds.RECORD_SINA_POLCA,
                     new Item.Properties().tab(ModTabs.MOD_MAIN_TAB).stacksTo(1)));
 
+    public static final RegistryObject<Item> SHEET_METAL = ITEMS.register("sheet_metal",
+            () -> new Item(new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }
