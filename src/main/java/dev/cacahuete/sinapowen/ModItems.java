@@ -6,6 +6,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -37,6 +38,12 @@ public class ModItems {
     public static final RegistryObject<Item> PARACETAMOL = ITEMS.register("paracetamol_pill",
             () -> new PillMedicineItem(new Item.Properties(), "pill.sina.paracetamol", () -> new MobEffectInstance(MobEffects.REGENERATION, 500))
                     .withSideEffect(() -> new MobEffectInstance(ModEffects.LIVER_REACTION.get(), 1500)));
+
+
+    public static final RegistryObject<Item> SINA_POLCA_MUSIC_DISC = ITEMS.register("sina_polca_music_disc",
+            () -> new RecordItem(4, ModSounds.SINA_POLCA,
+                    new Item.Properties().tab(ModTabs.MOD_MAIN_TAB).stacksTo(1)));
+
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

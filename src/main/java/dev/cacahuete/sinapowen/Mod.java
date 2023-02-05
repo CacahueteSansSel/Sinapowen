@@ -24,6 +24,7 @@ public class Mod {
         ModBlocks.register(bus);
         ModEffects.register(bus);
         ModItems.register(bus);
+        ModSounds.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

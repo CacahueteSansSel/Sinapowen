@@ -2,7 +2,7 @@
   "item.sina.crab": "Crab",
   "item.sina.medkit": "Medical Kit",
   "item.sina.knife": "Knife",
-  "item.sina.flag": "Flag",
+  "item.sina.flag": "Flag (mod icon)",
   "item.sina.candy": "Candy",
   "item.sina.appetite_suppressant_pill": "Appetite Suppressant Pill",
   "item.sina.pill": "Medicine",
@@ -10,5 +10,9 @@
   "block.sina.crab_block": "Crab Block",
   "itemGroup.sina": "Sinapowen",
   "death.attack.sina.liver_destroyed": "%1$s has seen his liver destroyed",
-  "effect.sina.liver_reaction": "Liver Reaction"
+  "effect.sina.liver_reaction": "Liver Reaction",
+
+
+  "item.sina.sina_polca_music_disc": "Sina_Polca",
+  "item.sina.sina_polca_music_disc.desc": "Troll out"
 }

@@ -12,7 +12,7 @@ public class LiverReactionEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity.level.random.nextFloat() > 0.7) {
+        if (entity.level.random.nextFloat() > 0.5) {
             entity.hurt(new DamageSource("sina.liver_destroyed").bypassArmor(), amplifier + 2);
         }
 
