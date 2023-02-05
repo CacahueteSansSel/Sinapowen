@@ -10,9 +10,8 @@
   "block.sina.crab_block": "Crab Block",
   "itemGroup.sina": "Sinapowen",
   "death.attack.sina.liver_destroyed": "%1$s has seen his liver destroyed",
+  "death.attack.sina.liver_destroyed.player": "%1$s has seen his liver destroyed while fighting with %2$s",
   "effect.sina.liver_reaction": "Liver Reaction",
-
-
-  "item.sina.sina_polca_music_disc": "Sina_Polca",
-  "item.sina.sina_polca_music_disc.desc": "Troll out"
+  "item.sina.music_disc_sina_polca": "Music Disc",
+  "item.sina.music_disc_sina_polca.desc": "Sina Polca"
 }
