@@ -38,6 +38,10 @@ public class ModItems {
             () -> new PillMedicineItem(new Item.Properties(), "pill.sina.paracetamol", () -> new MobEffectInstance(MobEffects.REGENERATION, 500))
                     .withSideEffect(() -> new MobEffectInstance(ModEffects.LIVER_REACTION.get(), 1500)));
 
+    public static final RegistryObject<Item> MUSIC_DISC_SINA_POLCA = ITEMS.register("music_disc_sina_polca",
+            () -> new RecordItem(4, ModSounds.RECORD_SINA_POLCA,
+                    new Item.Properties().tab(ModTabs.MOD_MAIN_TAB).stacksTo(1)));
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }

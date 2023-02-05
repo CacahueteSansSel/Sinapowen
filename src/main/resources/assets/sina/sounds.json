@@ -1,0 +1,10 @@
+{
+  "record.sina_polca": {
+    "sounds": [
+      {
+        "name": "sina:record/sina_polca",
+        "stream": true
+      }
+    ]
+  }
+}
