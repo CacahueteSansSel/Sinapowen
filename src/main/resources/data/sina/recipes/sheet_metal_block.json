@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "sina:sheet_metal"
+    }
+  },
+  "result": {
+    "item": "sina:sheet_metal_block",
+    "count": 1
+  }
+}
