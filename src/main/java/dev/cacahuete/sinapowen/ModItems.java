@@ -1,5 +1,6 @@
 package dev.cacahuete.sinapowen;
 
+import dev.cacahuete.sinapowen.items.BurnableItem;
 import dev.cacahuete.sinapowen.items.HealingItem;
 import dev.cacahuete.sinapowen.items.PillMedicineItem;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -44,6 +45,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> SHEET_METAL = ITEMS.register("sheet_metal",
             () -> new Item(new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
+    public static final RegistryObject<Item> FIRESTARTER = ITEMS.register("firestarter",
+            () -> new BurnableItem(1500, new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
