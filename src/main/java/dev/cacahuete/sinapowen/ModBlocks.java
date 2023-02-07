@@ -48,6 +48,11 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
             , ModTabs.MOD_MAIN_TAB);
 
+    public static final RegistryObject<Block> MONITOR_BLOCK = registerBlock("monitor_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
+            , ModTabs.MOD_MAIN_TAB);
+
     public static final RegistryObject<Block> METAL_LADDER = registerBlock("metal_ladder",
             () -> new LadderBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
                     .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.LADDER).noOcclusion())
