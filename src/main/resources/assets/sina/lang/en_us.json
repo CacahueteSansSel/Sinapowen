@@ -14,6 +14,8 @@
   "block.sina.sheet_metal_tiles_block": "Sheet Metal Tiles",
   "block.sina.sheet_metal_checkerboard_block": "Sheet Metal Checkerboard",
   "block.sina.sheet_metal_checkerwall_block": "Sheet Metal Checkerboard Wall",
+  "block.sina.generator_block": "Generator Block",
+  "block.sina.metal_ladder": "Metal Ladder",
   "itemGroup.sina": "Sinapowen",
   "death.attack.sina.liver_destroyed": "%1$s has seen his liver destroyed",
   "death.attack.sina.liver_destroyed.player": "%1$s has seen his liver destroyed whilst fighting %2$s",
