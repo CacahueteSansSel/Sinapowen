@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "sina:block/sheet_metal_block",
+    "side": "sina:block/monitor_block"
+  }
+}
