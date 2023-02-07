@@ -4,6 +4,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -40,6 +41,16 @@ public class ModBlocks {
     public static final RegistryObject<Block> SHEET_METAL_CHECKERWALL_BLOCK = registerBlock("sheet_metal_checkerwall_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
                     .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
+            , ModTabs.MOD_MAIN_TAB);
+
+    public static final RegistryObject<Block> GENERATOR_BLOCK = registerBlock("generator_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
+            , ModTabs.MOD_MAIN_TAB);
+
+    public static final RegistryObject<Block> METAL_LADDER = registerBlock("metal_ladder",
+            () -> new LadderBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.LADDER).noOcclusion())
             , ModTabs.MOD_MAIN_TAB);
 
     public static void register(IEventBus bus) {
