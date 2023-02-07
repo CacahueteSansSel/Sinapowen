@@ -17,6 +17,7 @@
   "block.sina.generator_block": "Generator Block",
   "block.sina.metal_ladder": "Metal Ladder",
   "block.sina.monitor_block": "Monitor Block",
+  "block.sina.emergency_red_light": "Emergency Red Light",
   "itemGroup.sina": "Sinapowen",
   "death.attack.sina.liver_destroyed": "%1$s has seen his liver destroyed",
   "death.attack.sina.liver_destroyed.player": "%1$s has seen his liver destroyed whilst fighting %2$s",

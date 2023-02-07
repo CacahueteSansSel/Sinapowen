@@ -1,5 +1,6 @@
 package dev.cacahuete.sinapowen;
 
+import dev.cacahuete.sinapowen.block.MetalLadderBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -54,8 +55,13 @@ public class ModBlocks {
             , ModTabs.MOD_MAIN_TAB);
 
     public static final RegistryObject<Block> METAL_LADDER = registerBlock("metal_ladder",
-            () -> new LadderBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
-                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.LADDER).noOcclusion())
+            () -> new MetalLadderBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL).noOcclusion())
+            , ModTabs.MOD_MAIN_TAB);
+
+    public static final RegistryObject<Block> EMERGENCY_RED_LIGHT = registerBlock("emergency_red_light",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().lightLevel((v) -> 7).strength(4.5F, 5.5F).sound(SoundType.METAL))
             , ModTabs.MOD_MAIN_TAB);
 
     public static void register(IEventBus bus) {
