@@ -1,5 +1,6 @@
 package dev.cacahuete.sinapowen;
 
+import dev.cacahuete.sinapowen.items.BatteryItem;
 import dev.cacahuete.sinapowen.items.BurnableItem;
 import dev.cacahuete.sinapowen.items.HealingItem;
 import dev.cacahuete.sinapowen.items.PillMedicineItem;
@@ -48,6 +49,18 @@ public class ModItems {
 
     public static final RegistryObject<Item> FIRESTARTER = ITEMS.register("firestarter",
             () -> new BurnableItem(1500, new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
+    public static final RegistryObject<Item> BATTERY_AA = ITEMS.register("battery_aa",
+            () -> new BatteryItem(BatteryItem.Format.AA, new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
+    public static final RegistryObject<Item> BATTERY_AAA = ITEMS.register("battery_aaa",
+            () -> new BatteryItem(BatteryItem.Format.AAA, new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
+    public static final RegistryObject<Item> BATTERY_C = ITEMS.register("battery_c",
+            () -> new BatteryItem(BatteryItem.Format.C, new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
+    public static final RegistryObject<Item> BATTERY_D = ITEMS.register("battery_d",
+            () -> new BatteryItem(BatteryItem.Format.D, new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
