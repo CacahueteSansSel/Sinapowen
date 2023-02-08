@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:village",
+
+
+  "config": {
+    "start_pool": "sina:break_tank",
+    "size": 1
+  },
+
+  "biomes": "#sina:has_structure/break_tank",
+
+
+  "adapt_noise": true,
+
+
+  "spawn_overrides": {}
+}
