@@ -10,6 +10,15 @@
         "projection": "rigid",
         "processors": "minecraft:empty"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "sina:house_floors_underground_tech",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
     }
   ]
 }
