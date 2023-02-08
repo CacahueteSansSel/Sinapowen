@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "sina:house_floors",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 130,
+    "separation": 32,
+    "salt": 685674675
+  }
+}
