@@ -1,5 +1,6 @@
 package dev.cacahuete.sinapowen;
 
+import dev.cacahuete.sinapowen.entity.ModEntityTypes;
 import dev.cacahuete.sinapowen.items.BatteryItem;
 import dev.cacahuete.sinapowen.items.BurnableItem;
 import dev.cacahuete.sinapowen.items.HealingItem;
@@ -8,6 +9,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -61,6 +63,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> BATTERY_D = ITEMS.register("battery_d",
             () -> new BatteryItem(BatteryItem.Format.D, new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
+    public static final RegistryObject<Item> MUTANTSPIDER_SPAWN_EGG = ITEMS.register("mutantspider_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.MUTANT_SPIDER, 0x948e8d, 0x3b3635,
+                    new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

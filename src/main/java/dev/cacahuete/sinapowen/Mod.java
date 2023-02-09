@@ -1,14 +1,20 @@
 package dev.cacahuete.sinapowen;
 
 import com.mojang.logging.LogUtils;
+import dev.cacahuete.sinapowen.entity.ModEntityTypes;
+import dev.cacahuete.sinapowen.entity.client.MutantSpiderRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @net.minecraftforge.fml.common.Mod("sina")
@@ -25,8 +31,17 @@ public class Mod {
         ModEffects.register(bus);
         ModItems.register(bus);
         ModSounds.register(bus);
+        ModEntityTypes.register(bus);
+
+        GeckoLib.initialize();
+
 
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event)
+    {
+        EntityRenderers.register(ModEntityTypes.MUTANT_SPIDER.get(), MutantSpiderRenderer::new);
     }
 
     @SubscribeEvent
