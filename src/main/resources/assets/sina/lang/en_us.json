@@ -9,7 +9,16 @@
   "item.sina.sheet_metal": "Sheet Metal",
   "item.sina.firestarter": "Firestarter Pack",
   "item.sina.battery": "Battery",
+  "item.sina.music_disc_sina_polca": "Music Disc",
+  "item.sina.music_disc_sina_polca.desc": "Sina Polca",
+
+
+  "item.sina.mutantspider_spawn_egg": "MutantSpider Spawn Egg",
+  "entity.sina.mutant_spider": "Mutant Spider",
+
+
   "pill.sina.paracetamol": "Paracetamol",
+
   "block.sina.crab_block": "Crab Block",
   "block.sina.sheet_metal_block": "Sheet Metal Block",
   "block.sina.sheet_metal_tiles_block": "Sheet Metal Tiles",
@@ -19,10 +28,13 @@
   "block.sina.metal_ladder": "Metal Ladder",
   "block.sina.monitor_block": "Monitor Block",
   "block.sina.emergency_red_light": "Emergency Red Light",
+
+
   "itemGroup.sina": "Sinapowen",
+
   "death.attack.sina.liver_destroyed": "%1$s has seen his liver destroyed",
   "death.attack.sina.liver_destroyed.player": "%1$s has seen his liver destroyed whilst fighting %2$s",
-  "effect.sina.liver_reaction": "Liver Reaction",
-  "item.sina.music_disc_sina_polca": "Music Disc",
-  "item.sina.music_disc_sina_polca.desc": "Sina Polca"
+
+  "effect.sina.liver_reaction": "Liver Reaction"
+
 }
