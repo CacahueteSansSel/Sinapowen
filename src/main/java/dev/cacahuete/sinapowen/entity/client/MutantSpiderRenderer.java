@@ -25,9 +25,9 @@ public class MutantSpiderRenderer extends GeoEntityRenderer<MutantSpider> {
 
     @Override
     public RenderType getRenderType(MutantSpider animatable, float partialTicks, PoseStack stack,
-                                    MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLighIn,
+                                    MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
                                     ResourceLocation textureLocation) {
-        stack.scale(0.8F,0.8F,0.8F);
-        return  super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLighIn, textureLocation);
+        stack.scale(0.8f, 0.8f, 0.8f);
+        return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }
 }
