@@ -104,7 +104,7 @@ public class MutantSpider extends Spider implements IAnimatable {
     }
 
     protected void playStepSound(BlockPos pos, BlockState BlockIn) {
-        this.playSound(SoundEvents.HOSTILE_SMALL_FALL, 0.15f, 1.0f);
+        this.playSound(SoundEvents.SPIDER_STEP, 0.15f, 1.0f);
     }
 
     protected SoundEvent getAmbientSound() {
@@ -119,9 +119,6 @@ public class MutantSpider extends Spider implements IAnimatable {
     protected float getSoundVolume() {
         return 0.2f;
     }
-
-
-
 
 
     static class SpiderAttackGoal extends MeleeAttackGoal {
