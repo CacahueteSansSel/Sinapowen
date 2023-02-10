@@ -1,6 +1,6 @@
 package dev.cacahuete.sinapowen.event.loot;
 
-import dev.cacahuete.sinapowen.entity.ModEntityTypes;
+import dev.cacahuete.sinapowen.ModEntityTypes;
 import dev.cacahuete.sinapowen.entity.custom.MutantSpider;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

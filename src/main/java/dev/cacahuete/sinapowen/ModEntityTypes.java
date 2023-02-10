@@ -1,4 +1,4 @@
-package dev.cacahuete.sinapowen.entity;
+package dev.cacahuete.sinapowen;
 
 import dev.cacahuete.sinapowen.Mod;
 import dev.cacahuete.sinapowen.entity.custom.MutantSpider;
@@ -19,13 +19,11 @@ public class ModEntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITIES, Mod.ID);
 
-
     public static final RegistryObject<EntityType<MutantSpider>> MUTANT_SPIDER =
             ENTITY_TYPES.register("mutant_spider",
                     () -> EntityType.Builder.of(MutantSpider::new, MobCategory.MONSTER)
                             .sized(0.8f,0.6f)
                             .build(new ResourceLocation(Mod.ID, "mutant_spider").toString()));
-
     public static void register(IEventBus bus) {
         ENTITY_TYPES.register(bus);
     }

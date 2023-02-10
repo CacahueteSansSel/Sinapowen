@@ -1,6 +1,5 @@
 package dev.cacahuete.sinapowen;
 
-import dev.cacahuete.sinapowen.entity.ModEntityTypes;
 import dev.cacahuete.sinapowen.items.BatteryItem;
 import dev.cacahuete.sinapowen.items.BurnableItem;
 import dev.cacahuete.sinapowen.items.HealingItem;

@@ -27,7 +27,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class MutantSpider extends Spider implements IAnimatable {
 
-    private AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = new AnimationFactory(this);
 
     public MutantSpider(EntityType<? extends Spider> entityType, Level level) {
         super(entityType, level);
@@ -45,7 +45,6 @@ public class MutantSpider extends Spider implements IAnimatable {
 
     protected void registerGoals()
     {
-
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(4, new MutantSpider.SpiderTargetGoal<LivingEntity>(this, LivingEntity.class ));
@@ -55,13 +54,11 @@ public class MutantSpider extends Spider implements IAnimatable {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new MutantSpider.SpiderTargetGoal<>(this, Player.class));
         this.targetSelector.addGoal(3, new MutantSpider.SpiderTargetGoal<>(this, IronGolem.class));
-
     }
 
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-
         if(event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.mutant_spider.walk", true ));
             return PlayState.CONTINUE;
@@ -76,7 +73,6 @@ public class MutantSpider extends Spider implements IAnimatable {
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this,"controller",
                 0, this::predicate));
-
     }
 
     @Override
@@ -109,7 +105,7 @@ public class MutantSpider extends Spider implements IAnimatable {
 
         public boolean canUse() {
             float f = this.mob.getBrightness();
-            return f >= 0.5F ? false : super.canUse();
+            return f >= 0.5f ? false : super.canUse();
         }
     }
 }

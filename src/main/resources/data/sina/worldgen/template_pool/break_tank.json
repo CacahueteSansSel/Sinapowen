@@ -1,24 +1,14 @@
 {
   "name": "sina:break_tank",
-
   "fallback": "minecraft:empty",
-
   "elements": [
     {
-
       "weight": 1,
       "element": {
-
-
         "element_type": "minecraft:single_pool_element",
-
         "location": "sina:break_tank",
-
         "projection": "rigid",
-
         "processors": "minecraft:empty"
-
-
       }
     }
   ]

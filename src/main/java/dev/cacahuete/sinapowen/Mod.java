@@ -1,9 +1,7 @@
 package dev.cacahuete.sinapowen;
 
 import com.mojang.logging.LogUtils;
-import dev.cacahuete.sinapowen.entity.ModEntityTypes;
 import dev.cacahuete.sinapowen.entity.client.MutantSpiderRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,21 +25,25 @@ public class Mod {
     public Mod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        GeckoLib.initialize();
+
         ModBlocks.register(bus);
         ModEffects.register(bus);
         ModItems.register(bus);
         ModSounds.register(bus);
         ModEntityTypes.register(bus);
 
-        GeckoLib.initialize();
-
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void clientSetup(final FMLClientSetupEvent event)
+    @SubscribeEvent
+    public void doClientStuff(final FMLClientSetupEvent event)
     {
-        EntityRenderers.register(ModEntityTypes.MUTANT_SPIDER.get(), MutantSpiderRenderer::new);
+        event.enqueueWork(() -> {
+            EntityRenderers.register(ModEntityTypes.MUTANT_SPIDER.get(), MutantSpiderRenderer::new);
+        });
     }
 
     @SubscribeEvent

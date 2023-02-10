@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
@@ -18,8 +19,8 @@ public class MutantSpiderRenderer extends GeoEntityRenderer<MutantSpider> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MutantSpider instances) {
-        return new ResourceLocation(Mod.ID, "textures/entity/mutantspider/mutantspider.png");
+    public @NotNull ResourceLocation getTextureLocation(@NotNull MutantSpider instances) {
+        return new ResourceLocation(Mod.ID, "textures/entity/mutant_spider/mutant_spider.png");
     }
 
     @Override
