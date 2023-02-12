@@ -2,6 +2,8 @@ package dev.cacahuete.sinapowen;
 
 import com.mojang.logging.LogUtils;
 import dev.cacahuete.sinapowen.entity.client.MutantSpiderRenderer;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
@@ -45,6 +47,7 @@ public class Mod {
     @SubscribeEvent
     public void doClientStuff(final FMLClientSetupEvent event)
     {
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.IRON_BARS_BLOCK.get(), RenderType.cutout());
         event.enqueueWork(() -> {
             EntityRenderers.register(ModEntityTypes.MUTANT_SPIDER.get(), MutantSpiderRenderer::new);
         });

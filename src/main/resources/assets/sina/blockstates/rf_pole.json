@@ -1,0 +1,57 @@
+{
+  "variants": {
+    "face=ceiling,facing=east": {
+      "model": "sina:block/rf_pole",
+      "y": 270,
+      "x": 180
+    },
+    "face=ceiling,facing=north": {
+      "model": "sina:block/rf_pole",
+      "y": 180,
+      "x": 180
+    },
+    "face=ceiling,facing=south": {
+      "model": "sina:block/rf_pole",
+      "x": 180
+    },
+    "face=ceiling,facing=west": {
+      "model": "sina:block/rf_pole",
+      "y": 90,
+      "x": 180
+    },
+    "face=floor,facing=east": {
+      "model": "sina:block/rf_pole",
+      "y": 90
+    },
+    "face=floor,facing=north": {
+      "model": "sina:block/rf_pole"
+    },
+    "face=floor,facing=south": {
+      "model": "sina:block/rf_pole",
+      "y": 180
+    },
+    "face=floor,facing=west": {
+      "model": "sina:block/rf_pole",
+      "y": 270
+    },
+    "face=wall,facing=east": {
+      "model": "sina:block/rf_pole",
+      "y": 90,
+      "x": 90
+    },
+    "face=wall,facing=north": {
+      "model": "sina:block/rf_pole",
+      "x": 90
+    },
+    "face=wall,facing=south": {
+      "model": "sina:block/rf_pole",
+      "y": 180,
+      "x": 90
+    },
+    "face=wall,facing=west": {
+      "model": "sina:block/rf_pole",
+      "y": 270,
+      "x": 90
+    }
+  }
+}

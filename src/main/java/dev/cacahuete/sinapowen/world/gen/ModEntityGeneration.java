@@ -15,7 +15,7 @@ public class ModEntityGeneration {
 
     public static void onEntitySpawn(final BiomeLoadingEvent event) {
         addEntityToAllOverworldBiomes(event, ModEntityTypes.MUTANT_SPIDER.get(),
-                40, 10, 20);
+                40, 5, 10);
     }
 
     private static void addEntityToAllBiomesExceptThese(BiomeLoadingEvent event, EntityType<?> type,
