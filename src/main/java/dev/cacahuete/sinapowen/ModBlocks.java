@@ -1,6 +1,7 @@
 package dev.cacahuete.sinapowen;
 
 import dev.cacahuete.sinapowen.block.MetalLadderBlock;
+import dev.cacahuete.sinapowen.block.RFPoleBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -62,6 +63,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> EMERGENCY_RED_LIGHT = registerBlock("emergency_red_light",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
                     .requiresCorrectToolForDrops().lightLevel((v) -> 7).strength(4.5F, 5.5F).sound(SoundType.METAL))
+            , ModTabs.MOD_MAIN_TAB);
+
+    public static final RegistryObject<Block> RF_POLE = registerBlock("rf_pole",
+            () -> new RFPoleBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().strength(4.5F, 5.5F).sound(SoundType.METAL))
             , ModTabs.MOD_MAIN_TAB);
 
     public static void register(IEventBus bus) {
