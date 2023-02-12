@@ -67,6 +67,10 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.MUTANT_SPIDER, 0x948e8d, 0x3b3635,
                     new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
 
+    public static final RegistryObject<Item> INFECTION_BLOB_SPAWN_EGG = ITEMS.register("infection_blob_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.INFECTION_BLOB, 0xA8FF00, 0x000000,
+                    new Item.Properties().tab(ModTabs.MOD_MAIN_TAB)));
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }

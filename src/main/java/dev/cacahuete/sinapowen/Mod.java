@@ -1,6 +1,7 @@
 package dev.cacahuete.sinapowen;
 
 import com.mojang.logging.LogUtils;
+import dev.cacahuete.sinapowen.entity.client.InfectionBlobRenderer;
 import dev.cacahuete.sinapowen.entity.client.MutantSpiderRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -51,6 +52,7 @@ public class Mod {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.METAL_LADDER.get(), RenderType.cutout());
         event.enqueueWork(() -> {
             EntityRenderers.register(ModEntityTypes.MUTANT_SPIDER.get(), MutantSpiderRenderer::new);
+            EntityRenderers.register(ModEntityTypes.INFECTION_BLOB.get(), InfectionBlobRenderer::new);
         });
     }
 
