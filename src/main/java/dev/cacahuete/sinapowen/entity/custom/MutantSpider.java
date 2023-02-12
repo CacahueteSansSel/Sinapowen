@@ -42,20 +42,16 @@ public class MutantSpider extends Spider implements IAnimatable {
     }
 
 
-
-
-    public static AttributeSupplier setAttributes()
-    {
+    public static AttributeSupplier setAttributes() {
         return MutantSpider.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20)
                 .add(Attributes.ATTACK_DAMAGE, 10)
-                .add(Attributes.ATTACK_SPEED,  3.5f)
+                .add(Attributes.ATTACK_SPEED, 3.5f)
                 .add(Attributes.MOVEMENT_SPEED, 0.3f)
                 .add(Attributes.ARMOR, 3).build();
     }
 
-    protected void registerGoals()
-    {
+    protected void registerGoals() {
 
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
@@ -68,9 +64,10 @@ public class MutantSpider extends Spider implements IAnimatable {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
 
     }
+
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DATA_FLAGS_ID, (byte)0);
+        this.entityData.define(DATA_FLAGS_ID, (byte) 0);
     }
 
     public MobType getMobType() {
@@ -78,11 +75,10 @@ public class MutantSpider extends Spider implements IAnimatable {
     }
 
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
-    {
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
 
-        if(event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.mutant_spider.walk", true ));
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.mutant_spider.walk", true));
             return PlayState.CONTINUE;
         }
 
@@ -93,7 +89,7 @@ public class MutantSpider extends Spider implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this,"controller",
+        data.addAnimationController(new AnimationController(this, "controller",
                 0, this::predicate));
 
     }
@@ -110,12 +106,15 @@ public class MutantSpider extends Spider implements IAnimatable {
     protected SoundEvent getAmbientSound() {
         return SoundEvents.SPIDER_AMBIENT;
     }
+
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.SPIDER_HURT;
     }
+
     protected SoundEvent getDeathSound() {
         return SoundEvents.SPIDER_DEATH;
     }
+
     protected float getSoundVolume() {
         return 0.2f;
     }
@@ -133,7 +132,7 @@ public class MutantSpider extends Spider implements IAnimatable {
         public boolean canContinueToUse() {
             float f = this.mob.getBrightness();
             if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
-                this.mob.setTarget((LivingEntity)null);
+                this.mob.setTarget((LivingEntity) null);
                 return false;
             } else {
                 return super.canContinueToUse();
@@ -141,11 +140,9 @@ public class MutantSpider extends Spider implements IAnimatable {
         }
 
         protected double getAttackReachSqr(LivingEntity p_33825_) {
-            return (double)(4.0F + p_33825_.getBbWidth());
+            return (double) (4.0F + p_33825_.getBbWidth());
         }
     }
-
-
 
 
 }

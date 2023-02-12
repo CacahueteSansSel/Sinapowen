@@ -1,5 +1,6 @@
 package dev.cacahuete.sinapowen;
 
+import dev.cacahuete.sinapowen.block.InfectionBlobSpawnSurfaceBlock;
 import dev.cacahuete.sinapowen.block.MetalLadderBlock;
 import dev.cacahuete.sinapowen.block.RFPoleBlock;
 import dev.cacahuete.sinapowen.block.TransparentBlock;
@@ -74,6 +75,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> IRON_BARS_BLOCK = registerBlock("iron_bars_block",
             () -> new TransparentBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL)
                     .requiresCorrectToolForDrops().strength(2F, 2F).sound(SoundType.METAL))
+            , ModTabs.MOD_MAIN_TAB);
+
+    public static final RegistryObject<Block> INFECTION_PATCH_BLOCK = registerBlock("infection_patch_block",
+            () -> new InfectionBlobSpawnSurfaceBlock(BlockBehaviour.Properties.of(Material.SPONGE, MaterialColor.METAL)
+                    .requiresCorrectToolForDrops().lightLevel((v) -> 3).instabreak().sound(SoundType.FUNGUS))
             , ModTabs.MOD_MAIN_TAB);
 
     public static void register(IEventBus bus) {

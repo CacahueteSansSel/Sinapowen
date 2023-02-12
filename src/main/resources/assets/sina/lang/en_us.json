@@ -27,6 +27,7 @@
   "block.sina.emergency_red_light": "Emergency Red Light",
   "block.sina.rf_pole": "Radio Frequency Blaster",
   "block.sina.iron_bars_block": "Iron Bars Block",
+  "block.sina.infection_patch_block": "Infection Patch Block",
   "itemGroup.sina": "Sinapowen",
   "death.attack.sina.liver_destroyed": "%1$s has seen his liver destroyed",
   "death.attack.sina.liver_destroyed.player": "%1$s has seen his liver destroyed whilst fighting %2$s",

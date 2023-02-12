@@ -1,6 +1,7 @@
 package dev.cacahuete.sinapowen.entity.custom;
 
 import dev.cacahuete.sinapowen.ModEntityTypes;
+import dev.cacahuete.sinapowen.block.InfectionBlobSpawnSurfaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -8,9 +9,11 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -21,6 +24,7 @@ import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -31,6 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.EnumSet;
+import java.util.Random;
 
 public class InfectionBlob extends Monster implements IAnimatable {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(InfectionBlob.class, EntityDataSerializers.BYTE);
@@ -40,18 +45,20 @@ public class InfectionBlob extends Monster implements IAnimatable {
         super(entityType, level);
     }
 
-    public static AttributeSupplier setAttributes()
-    {
+    public static AttributeSupplier setAttributes() {
         return InfectionBlob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 8)
                 .add(Attributes.ATTACK_DAMAGE, 3)
-                .add(Attributes.ATTACK_SPEED,  1.5f)
+                .add(Attributes.ATTACK_SPEED, 1.5f)
                 .add(Attributes.MOVEMENT_SPEED, 0.15f)
                 .build();
     }
 
-    protected void registerGoals()
-    {
+    public static boolean checkMonsterSpawnRules(EntityType<? extends Monster> entity, ServerLevelAccessor levelAccess, MobSpawnType mobSpawnType, BlockPos pos, Random rng) {
+        return Monster.checkMonsterSpawnRules(entity, levelAccess, mobSpawnType, pos, rng) && levelAccess.getBlockState(pos).getBlock() instanceof InfectionBlobSpawnSurfaceBlock;
+    }
+
+    protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FleeSunGoal(this, 1f));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
@@ -68,13 +75,12 @@ public class InfectionBlob extends Monster implements IAnimatable {
 
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DATA_FLAGS_ID, (byte)0);
+        this.entityData.define(DATA_FLAGS_ID, (byte) 0);
     }
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
-    {
-        if(event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.infection_blob.walk", true ));
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.infection_blob.walk", true));
             return PlayState.CONTINUE;
         }
 
@@ -87,12 +93,12 @@ public class InfectionBlob extends Monster implements IAnimatable {
         if (!(entity instanceof Spider spider)) return;
 
         spider.convertTo(ModEntityTypes.MUTANT_SPIDER.get(), false);
-        level.levelEvent((Player)null, 1026, this.blockPosition(), 0);
+        level.levelEvent((Player) null, 1026, this.blockPosition(), 0);
     }
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this,"controller",
+        data.addAnimationController(new AnimationController(this, "controller",
                 0, this::predicate));
     }
 
@@ -108,12 +114,15 @@ public class InfectionBlob extends Monster implements IAnimatable {
     protected SoundEvent getAmbientSound() {
         return SoundEvents.SLIME_SQUISH;
     }
+
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.SLIME_HURT;
     }
+
     protected SoundEvent getDeathSound() {
         return SoundEvents.SLIME_DEATH;
     }
+
     protected float getSoundVolume() {
         return 0.2f;
     }
@@ -128,7 +137,7 @@ public class InfectionBlob extends Monster implements IAnimatable {
         }
 
         protected double getAttackReachSqr(LivingEntity p_33825_) {
-            return (double)(4.0F + p_33825_.getBbWidth());
+            return (double) (4.0F + p_33825_.getBbWidth());
         }
     }
 }

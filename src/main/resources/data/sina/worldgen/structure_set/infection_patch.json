@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "sina:infection_patch",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 20,
+    "separation": 15,
+    "salt": 943879833
+  }
+}

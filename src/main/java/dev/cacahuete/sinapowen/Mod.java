@@ -3,6 +3,7 @@ package dev.cacahuete.sinapowen;
 import com.mojang.logging.LogUtils;
 import dev.cacahuete.sinapowen.entity.client.InfectionBlobRenderer;
 import dev.cacahuete.sinapowen.entity.client.MutantSpiderRenderer;
+import dev.cacahuete.sinapowen.entity.custom.InfectionBlob;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -56,6 +57,21 @@ public class Mod {
         });
     }
 
+    private void setup(final FMLCommonSetupEvent event)
+    {
+        event.enqueueWork(() -> {
+            SpawnPlacements.register(ModEntityTypes.MUTANT_SPIDER.get(),
+                    SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    Monster::checkMonsterSpawnRules);
+
+            SpawnPlacements.register(ModEntityTypes.INFECTION_BLOB.get(),
+                    SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    InfectionBlob::checkMonsterSpawnRules);
+        });
+    }
+
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
 
@@ -67,18 +83,5 @@ public class Mod {
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
 
         }
-    }
-
-
-    private void setup(final FMLCommonSetupEvent event)
-    {
-        event.enqueueWork(() -> {
-
-
-            SpawnPlacements.register(ModEntityTypes.MUTANT_SPIDER.get(),
-                    SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                    Monster::checkMonsterSpawnRules);
-        });
     }
 }
