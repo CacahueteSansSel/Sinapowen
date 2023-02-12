@@ -22,7 +22,7 @@ public class ModEntityTypes {
     public static final RegistryObject<EntityType<MutantSpider>> MUTANT_SPIDER =
             ENTITY_TYPES.register("mutant_spider",
                     () -> EntityType.Builder.of(MutantSpider::new, MobCategory.MONSTER)
-                            .sized(0.8f,0.6f)
+                            .sized(1.0f,1.0f)
                             .build(new ResourceLocation(Mod.ID, "mutant_spider").toString()));
     public static void register(IEventBus bus) {
         ENTITY_TYPES.register(bus);

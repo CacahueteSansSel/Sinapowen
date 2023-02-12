@@ -47,11 +47,11 @@ public class MutantSpider extends Spider implements IAnimatable {
     public static AttributeSupplier setAttributes()
     {
         return MutantSpider.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 40)
+                .add(Attributes.MAX_HEALTH, 20)
                 .add(Attributes.ATTACK_DAMAGE, 10)
-                .add(Attributes.ATTACK_SPEED,  4.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.4f)
-                .add(Attributes.ARMOR, 4).build();
+                .add(Attributes.ATTACK_SPEED,  3.5f)
+                .add(Attributes.MOVEMENT_SPEED, 0.3f)
+                .add(Attributes.ARMOR, 3).build();
     }
 
     protected void registerGoals()
