@@ -1,27 +1,30 @@
 package dev.cacahuete.sinapowen.entity.custom;
 
+import dev.cacahuete.sinapowen.ModEntityTypes;
+import dev.cacahuete.sinapowen.block.InfectionBlobSpawnSurfaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
-import net.minecraft.world.entity.animal.IronGolem;
-import net.minecraft.world.entity.animal.Turtle;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -31,38 +34,43 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class MutantSpider extends Spider implements IAnimatable {
+import java.util.EnumSet;
+import java.util.Random;
 
-
-    private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Spider.class, EntityDataSerializers.BYTE);
+public class InfectionBlob extends Monster implements IAnimatable {
+    private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(InfectionBlob.class, EntityDataSerializers.BYTE);
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public MutantSpider(EntityType<? extends Spider> entityType, Level level) {
+    public InfectionBlob(EntityType<? extends InfectionBlob> entityType, Level level) {
         super(entityType, level);
     }
 
-
     public static AttributeSupplier setAttributes() {
-        return MutantSpider.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20)
-                .add(Attributes.ATTACK_DAMAGE, 10)
-                .add(Attributes.ATTACK_SPEED, 3.5f)
-                .add(Attributes.MOVEMENT_SPEED, 0.3f)
-                .add(Attributes.ARMOR, 3).build();
+        return InfectionBlob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 8)
+                .add(Attributes.ATTACK_DAMAGE, 3)
+                .add(Attributes.ATTACK_SPEED, 1.5f)
+                .add(Attributes.MOVEMENT_SPEED, 0.15f)
+                .build();
+    }
+
+    public static boolean checkMonsterSpawnRules(EntityType<? extends Monster> entity, ServerLevelAccessor levelAccess, MobSpawnType mobSpawnType, BlockPos pos, Random rng) {
+        return Monster.checkMonsterSpawnRules(entity, levelAccess, mobSpawnType, pos, rng) && levelAccess.getBlockState(pos).getBlock() instanceof InfectionBlobSpawnSurfaceBlock;
     }
 
     protected void registerGoals() {
-
-        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new FleeSunGoal(this, 1f));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
-        this.goalSelector.addGoal(4, new MutantSpider.SpiderAttackGoal(this));
+        this.goalSelector.addGoal(5, new InfectionBlobAttackGoal(this));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8D));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
+        // The infection blob should attack the spider but not the mutant spider
+        // So we use a predicate to do this
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Spider.class,
+                1, true, true, (entity) -> !(entity instanceof MutantSpider)));
     }
 
     protected void defineSynchedData() {
@@ -70,28 +78,28 @@ public class MutantSpider extends Spider implements IAnimatable {
         this.entityData.define(DATA_FLAGS_ID, (byte) 0);
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
-    }
-
-
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.mutant_spider.walk", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.infection_blob.walk", true));
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.mutant_spider.idle", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.infection_blob.idle", true));
         return PlayState.CONTINUE;
     }
 
+    @Override
+    public void killed(ServerLevel level, LivingEntity entity) {
+        if (!(entity instanceof Spider spider)) return;
+
+        spider.convertTo(ModEntityTypes.MUTANT_SPIDER.get(), false);
+        level.levelEvent((Player) null, 1026, this.blockPosition(), 0);
+    }
 
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller",
                 0, this::predicate));
-
     }
 
     @Override
@@ -100,28 +108,27 @@ public class MutantSpider extends Spider implements IAnimatable {
     }
 
     protected void playStepSound(BlockPos pos, BlockState BlockIn) {
-        this.playSound(SoundEvents.SPIDER_STEP, 0.15f, 1.0f);
+        this.playSound(SoundEvents.SLIME_SQUISH, 0.15f, 1.0f);
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.SPIDER_AMBIENT;
+        return SoundEvents.SLIME_SQUISH;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.SPIDER_HURT;
+        return SoundEvents.SLIME_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.SPIDER_DEATH;
+        return SoundEvents.SLIME_DEATH;
     }
 
     protected float getSoundVolume() {
         return 0.2f;
     }
 
-
-    static class SpiderAttackGoal extends MeleeAttackGoal {
-        public SpiderAttackGoal(Spider p_33822_) {
+    static class InfectionBlobAttackGoal extends MeleeAttackGoal {
+        public InfectionBlobAttackGoal(InfectionBlob p_33822_) {
             super(p_33822_, 1.0D, true);
         }
 
@@ -129,22 +136,10 @@ public class MutantSpider extends Spider implements IAnimatable {
             return super.canUse() && !this.mob.isVehicle();
         }
 
-        public boolean canContinueToUse() {
-            float f = this.mob.getBrightness();
-            if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
-                this.mob.setTarget((LivingEntity) null);
-                return false;
-            } else {
-                return super.canContinueToUse();
-            }
-        }
-
         protected double getAttackReachSqr(LivingEntity p_33825_) {
             return (double) (4.0F + p_33825_.getBbWidth());
         }
     }
-
-
 }
 
 

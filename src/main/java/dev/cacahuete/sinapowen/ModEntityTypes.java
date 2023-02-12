@@ -1,6 +1,7 @@
 package dev.cacahuete.sinapowen;
 
 import dev.cacahuete.sinapowen.Mod;
+import dev.cacahuete.sinapowen.entity.custom.InfectionBlob;
 import dev.cacahuete.sinapowen.entity.custom.MutantSpider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -24,6 +25,12 @@ public class ModEntityTypes {
                     () -> EntityType.Builder.of(MutantSpider::new, MobCategory.MONSTER)
                             .sized(1.0f,1.0f)
                             .build(new ResourceLocation(Mod.ID, "mutant_spider").toString()));
+
+    public static final RegistryObject<EntityType<InfectionBlob>> INFECTION_BLOB =
+            ENTITY_TYPES.register("infection_blob",
+                    () -> EntityType.Builder.of(InfectionBlob::new, MobCategory.MONSTER)
+                            .sized(0.5f, 0.5f)
+                            .build(new ResourceLocation(Mod.ID, "infection_blob").toString()));
     public static void register(IEventBus bus) {
         ENTITY_TYPES.register(bus);
     }

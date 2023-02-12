@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "sina:block/infection_patch_block" }
+  }
+}

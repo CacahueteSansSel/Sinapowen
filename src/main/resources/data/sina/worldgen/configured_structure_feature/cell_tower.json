@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:village",
+  "config": {
+    "start_pool": "sina:cell_tower",
+    "size": 1
+  },
+  "biomes": "#sina:has_structure/cell_tower",
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

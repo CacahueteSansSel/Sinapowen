@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:village",
+  "config": {
+    "start_pool": "sina:infection_patch",
+    "size": 1
+  },
+  "biomes": "#sina:has_structure/infection_patch",
+  "adapt_noise": true,
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "sina:infection_blob",
+          "weight": 1,
+          "minCount": 2,
+          "maxCount": 10
+        }
+      ]
+    }
+  }
+}

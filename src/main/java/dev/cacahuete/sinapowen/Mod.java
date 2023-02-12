@@ -1,7 +1,9 @@
 package dev.cacahuete.sinapowen;
 
 import com.mojang.logging.LogUtils;
+import dev.cacahuete.sinapowen.entity.client.InfectionBlobRenderer;
 import dev.cacahuete.sinapowen.entity.client.MutantSpiderRenderer;
+import dev.cacahuete.sinapowen.entity.custom.InfectionBlob;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -48,8 +50,25 @@ public class Mod {
     public void doClientStuff(final FMLClientSetupEvent event)
     {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.IRON_BARS_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.METAL_LADDER.get(), RenderType.cutout());
         event.enqueueWork(() -> {
             EntityRenderers.register(ModEntityTypes.MUTANT_SPIDER.get(), MutantSpiderRenderer::new);
+            EntityRenderers.register(ModEntityTypes.INFECTION_BLOB.get(), InfectionBlobRenderer::new);
+        });
+    }
+
+    private void setup(final FMLCommonSetupEvent event)
+    {
+        event.enqueueWork(() -> {
+            SpawnPlacements.register(ModEntityTypes.MUTANT_SPIDER.get(),
+                    SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    Monster::checkMonsterSpawnRules);
+
+            SpawnPlacements.register(ModEntityTypes.INFECTION_BLOB.get(),
+                    SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    InfectionBlob::checkMonsterSpawnRules);
         });
     }
 
@@ -64,18 +83,5 @@ public class Mod {
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
 
         }
-    }
-
-
-    private void setup(final FMLCommonSetupEvent event)
-    {
-        event.enqueueWork(() -> {
-
-
-            SpawnPlacements.register(ModEntityTypes.MUTANT_SPIDER.get(),
-                    SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                    Monster::checkMonsterSpawnRules);
-        });
     }
 }
