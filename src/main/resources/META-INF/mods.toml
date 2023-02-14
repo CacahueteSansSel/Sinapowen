@@ -29,9 +29,9 @@ displayName = "Sinapowen" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="sina.png" #optional
 # A text field displayed in the mod UI
-#credits="Thanks for this example mod goes to Java" #optional
+credits="Cacahuète Dev, Shyro Dev" #optional
 # A text field displayed in the mod UI
-#authors="Love, Cheese and small house plants" #optional
+authors="Cacahuète Dev, Shyro Dev" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description = '''
 The destroyed world remains'
